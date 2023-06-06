@@ -25,7 +25,9 @@ public class AppDbContext : DbContext
         builder.Entity<Attendee>().ToTable("Attendees");
         builder.Entity<Attendee>().HasKey(p => p.Id);
         builder.Entity<Attendee>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Attendee>().Property(p => p.UserName).IsRequired().HasMaxLength(30);
+        builder.Entity<Attendee>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
+        builder.Entity<Attendee>().Property(p => p.Name).IsRequired().HasMaxLength(255);
+        builder.Entity<Attendee>().Property(p => p.email).IsRequired().HasMaxLength(255);
 
         //builder.Entity<Attendee>
 
