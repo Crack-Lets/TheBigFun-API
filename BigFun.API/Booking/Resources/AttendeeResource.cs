@@ -15,5 +15,5 @@ public class AttendeeResource
     public string Name { get; set; }
     
     [SwaggerSchema("Attendee Email")]
-    public string email { get; set; }
+    public string Email { get; set; }
 }
