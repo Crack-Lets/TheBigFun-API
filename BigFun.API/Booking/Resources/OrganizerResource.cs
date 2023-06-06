@@ -7,5 +7,6 @@ public class OrganizerResource
     public string UserName { get; set; }
     public string Email { get; set; }
 
-    public OrganizerResource Organizer { get; set; }
+    //esto en EventResource y PaymentResource de booking->resources
+    //public OrganizerResource Organizer { get; set; }
 }

@@ -36,47 +36,47 @@ public class OrganizersController:ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var organizer = _mapper.Map<SaveOrganizerResource, Organizer>(resource);
+        var category = _mapper.Map<SaveOrganizerResource, Organizer>(resource);
 
-        var result = await _organizerService.SaveAsync(organizer);
+        var result = await _organizerService.SaveAsync(category);
 
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var organizerResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
+        var categoryResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
 
-        return Ok(organizerResource);
+        return Ok(categoryResource);
     }
+    
     
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveOrganizerResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
-
-        var organizer = _mapper.Map<SaveOrganizerResource, Organizer>(resource);
-
-        var result = await _organizerService.UpdateAsync(id, organizer);
-
+        
+        var category = _mapper.Map<SaveOrganizerResource, Organizer>(resource);
+        var result = await _organizerService.UpdateAsync(id, category);
+        
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var organizerResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
+        var categoryResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
 
-        return Ok(organizerResource);
+        return Ok(categoryResource);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _organizerService.DeleteAsync(id);
-        
+
         if (!result.Success)
             return BadRequest(result.Message);
+        
+        var categoryResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
 
-        var organizerResource = _mapper.Map<Organizer, OrganizerResource>(result.Resource);
-
-        return Ok(organizerResource);
+        return Ok(categoryResource);
     }
 
 }
