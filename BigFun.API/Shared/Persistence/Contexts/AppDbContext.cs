@@ -1,4 +1,5 @@
 using BigFun.API.Booking.Domain.Models;
+using BigFun.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace BigFun.API.Shared.Persistence.Contexts;
@@ -33,6 +34,8 @@ public class AppDbContext : DbContext
 
 
 
+        
+        builder.UseSnakeCaseNamingConvention();
 
     }
 }
