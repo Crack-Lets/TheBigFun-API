@@ -13,4 +13,5 @@ public interface IPaymentRepository
     Payment FindById(int id);
     void Update(Payment payment);
     void Remove(Payment payment);
+    Task<IEnumerable<Payment>> FindByOrganizerIdAsync(int organizerId);
 }
