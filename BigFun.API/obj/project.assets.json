@@ -7347,19 +7347,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\Kevin Oliva\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\BigFun.API.csproj",
+      "projectUniqueName": "D:\\WebTheBigFun-API\\BigFun.API\\BigFun.API.csproj",
       "projectName": "BigFun.API",
-      "projectPath": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\BigFun.API.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\obj\\",
+      "projectPath": "D:\\WebTheBigFun-API\\BigFun.API\\BigFun.API.csproj",
+      "packagesPath": "C:\\Users\\Kevin Oliva\\.nuget\\packages\\",
+      "outputPath": "D:\\WebTheBigFun-API\\BigFun.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kevin Oliva\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
