@@ -34,6 +34,11 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
         
     }
 
+    public bool ExistByDate(JSType.Date date)
+    {
+        throw new NotImplementedException();
+    }
+
     public Payment FindById(int id)
     {
         throw new NotImplementedException();
