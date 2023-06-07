@@ -4,11 +4,17 @@ public class EventResource
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string address { get; set; }
+    public string Address { get; set; }
     public int Capacity { get; set; }
     public string Image { get; set; }
-    public DateTime dateTime { get; set;}
+    public DateTime Datetime { get; set;}
     public int Cost { get; set; }
     public string District { get; set; }
+    /*
+    public OrganizerResource Organizer(get; set;)
+    public AttendeeResource Attendee(get; set;)
+     */
     
+    
+
 }
