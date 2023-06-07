@@ -9,4 +9,5 @@ public class PaymentResource
     public String QrImg { get; set; }
 
     PaymentResource Payment { get; set; }
+    public OrganizerResource Organizer { get; set; }
 }

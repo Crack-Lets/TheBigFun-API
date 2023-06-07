@@ -33,10 +33,11 @@ public class AppDbContext : DbContext
         //builder.Entity<Attendee>
 
         // Relationships
-        builder.Entity<Organizer>()
-            .HasMany(p => p.Events)
-            .WithOne(p => p.Organizer)
-            .HasForeignKey(p => p.OrganizerId);
+        
+        //builder.Entity<Organizer>()
+        //    .HasMany(p => p.Events)
+        //    .WithOne(p => p.Organizer)
+        //    .HasForeignKey(p => p.OrganizerId);
         
         builder.Entity<Organizer>()
             .HasMany(p => p.Payments)
