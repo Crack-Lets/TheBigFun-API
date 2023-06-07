@@ -8,6 +8,10 @@ public interface IEventService
     Task<IEnumerable<Event>> ListAsync();
     Task<EventResponse> SaveAsync(Event events);
     Task<EventResponse> UpdateAsync(int id, Event events);
+//AGREGADO DE ISA
+    Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId);
+    
+    //
     Task<EventResponse> DeleteAsync(int eventId);
     
 }

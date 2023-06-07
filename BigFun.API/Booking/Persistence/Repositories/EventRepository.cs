@@ -21,6 +21,8 @@ public class EventRepository :BaseRepository, IEventRepository
     {
         await _context.Events.AddAsync(events);
     }
+    
+    
 
     public async Task<Event> FindByIdAsync(int id)
     {
@@ -29,11 +31,18 @@ public class EventRepository :BaseRepository, IEventRepository
 
     public async Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId)
     {
-        
-        //esto falta
-        throw new NotImplementedException();
+        return await _context.Events
+            .Where(p => p.OrganizerId == organizerId)
+            .Include(p => p.Organizer)
+            .ToListAsync();
     }
-
+//AGREGADO DE ISABELA
+    public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
+    {
+        return await _context.Events.Where(p => p.OrganizerId == organizerId)
+            .Include(p => p.Organizer).ToListAsync();
+    }
+//
     public void Update(Event events)
     {
         _context.Events.Update(events);

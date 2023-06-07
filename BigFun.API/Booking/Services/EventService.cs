@@ -56,7 +56,12 @@ public class EventService : IEventService
             return new EventResponse($"An error occurred while updating the event:{e.Message}");
         }
     }
-
+    //AGREGADO DE ISA
+    public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
+    {
+        return await _eventRepository.FindByOrganizerIdAsync(organizerId);
+    }
+//
     public async Task<EventResponse> DeleteAsync(int eventId)
     {
         var existingEvent = await _eventRepository.FindByIdAsync(eventId);
