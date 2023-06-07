@@ -1,6 +1,6 @@
-namespace BigFun.API.Booking.Domain.Models;
+namespace BigFun.API.Booking.Resources;
 
-public class Event
+public class EventResource
 {
     public int Id { get; set; }
     public string Name { get; set; }

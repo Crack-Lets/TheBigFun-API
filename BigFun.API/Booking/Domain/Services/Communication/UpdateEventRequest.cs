@@ -1,8 +1,7 @@
-namespace BigFun.API.Booking.Domain.Models;
+namespace BigFun.API.Booking.Domain.Services.Communication;
 
-public class Event
+public class UpdateEventRequest
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public string address { get; set; }
     public int Capacity { get; set; }
@@ -10,5 +9,4 @@ public class Event
     public DateTime dateTime { get; set;}
     public int Cost { get; set; }
     public string District { get; set; }
-    
 }
