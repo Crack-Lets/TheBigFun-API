@@ -1,3 +1,5 @@
+using BigFun.API.Booking.Domain.Models;
+
 namespace BigFun.API.Booking.Resources;
 
 public class EventResource
@@ -10,11 +12,8 @@ public class EventResource
     public DateTime Datetime { get; set;}
     public int Cost { get; set; }
     public string District { get; set; }
-    /*
-    public OrganizerResource Organizer(get; set;)
-    public AttendeeResource Attendee(get; set;)
-     */
+   
+    public int OrganizerId { get; set; }
+    public Organizer Organizer { get; set; }
     
-    
-
 }
