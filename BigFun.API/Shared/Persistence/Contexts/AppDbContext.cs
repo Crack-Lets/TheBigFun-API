@@ -33,7 +33,7 @@ public class AppDbContext : DbContext
         //builder.Entity<Attendee>
 
         // Relationships
-        builder.Entity<Organizer>()
+        /*builder.Entity<Organizer>()
             .HasMany(p => p.Events)
             .WithOne(p => p.Organizer)
             .HasForeignKey(p => p.OrganizerId);
@@ -41,7 +41,7 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>()
             .HasMany(p => p.Payments)
             .WithOne(p => p.Organizer)
-            .HasForeignKey(p => p.OrganizerId);
+            .HasForeignKey(p => p.OrganizerId);*/
         
         builder.Entity<Organizer>().ToTable("Organizers");
         builder.Entity<Organizer>().HasKey(p => p.Id);
