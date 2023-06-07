@@ -9,8 +9,6 @@ public interface IPaymentRepository
     Task AddAsync(Payment user);
     Task<Payment> FindByIdAsync(int id);
     Task<Payment> FindByDateAsync(JSType.Date date);
-    public bool ExistByDate(JSType.Date date);
-    Payment FindById(int id);
     void Update(Payment payment);
     void Remove(Payment payment);
     Task<IEnumerable<Payment>> FindByOrganizerIdAsync(int organizerId);

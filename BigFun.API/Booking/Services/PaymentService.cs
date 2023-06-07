@@ -72,4 +72,8 @@ public class PaymentService : IPaymentService
             return new PaymentResponse($"An error occurred while deleting the category{e.Message}");
         }
     }
+    public async Task<IEnumerable<Payment>> ListByOrganizerIdAsync(int organizerId)
+    {
+        return await _paymentRepository.FindByOrganizerIdAsync(organizerId);
+    }
 }

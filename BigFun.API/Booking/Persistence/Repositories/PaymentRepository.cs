@@ -33,17 +33,7 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
         return await _context.Payments.FindAsync(date);
         
     }
-
-    public bool ExistByDate(JSType.Date date)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Payment FindById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public void Update(Payment payment)
     {
         _context.Payments.Update(payment);
@@ -54,8 +44,12 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
         _context.Payments.Remove(payment);
     }
 
+
     public async Task<IEnumerable<Payment>> FindByOrganizerIdAsync(int organizerId)
     {
-        throw new NotImplementedException();
+        return await _context.Payments
+            .Where(p => p.OrganizerId == organizerId)
+            .Include(p => p.Organizer)
+            .ToListAsync();
     }
 }
