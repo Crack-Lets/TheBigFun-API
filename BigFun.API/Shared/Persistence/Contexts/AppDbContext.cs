@@ -15,8 +15,8 @@ public class AppDbContext : DbContext
     
     public DbSet<Attendee> Attendees { get; set; }
     public DbSet<Organizer> Organizers { get; set; }
-
-
+    
+    public DbSet<Payment> Payments { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -50,9 +50,16 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
         builder.Entity<Organizer>().Property(p => p.Name).IsRequired().HasMaxLength(255);
         builder.Entity<Organizer>().Property(p => p.Email).IsRequired().HasMaxLength(255);
-
+        
+        builder.Entity<Payment>().ToTable("Payments");
+        builder.Entity<Payment>().HasKey(p => p.Id);
+        builder.Entity<Payment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Payment>().Property(p => p.Date).IsRequired();
+        builder.Entity<Payment>().Property(p => p.QrImg).IsRequired().HasMaxLength(500);
         // Apply Snake Case Naming Convention
         builder.UseSnakeCaseNamingConvention();
+
+        
 
     }
 }
