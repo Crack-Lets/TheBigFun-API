@@ -9,5 +9,5 @@ public interface IEventService
     Task<EventResponse> SaveAsync(Event events);
     Task<EventResponse> UpdateAsync(int id, Event events);
     Task<EventResponse> DeleteAsync(int eventId);
-
+    
 }
