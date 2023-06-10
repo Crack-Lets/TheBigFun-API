@@ -11,6 +11,8 @@ public class ModelToResourceProfile : Profile
     {
 
         CreateMap<Event, EventResource>();
+        CreateMap<Organizer,OrganizerResource>();
+        CreateMap<Attendee, AttendeeResource>();
     }
     
 }

@@ -28,15 +28,15 @@ public class AppDbContext : DbContext
         builder.Entity<Attendee>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Attendee>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
         builder.Entity<Attendee>().Property(p => p.Name).IsRequired().HasMaxLength(255);
-        builder.Entity<Attendee>().Property(p => p.email).IsRequired().HasMaxLength(255);
+        builder.Entity<Attendee>().Property(p => p.Email).IsRequired().HasMaxLength(255);
 
         //builder.Entity<Attendee>
 
         // Relationships
-        builder.Entity<Organizer>()
+        /*builder.Entity<Organizer>()
             .HasMany(p => p.Events)
             .WithOne(p => p.Organizer)
-            .HasForeignKey(p => p.OrganizerId);
+            .HasForeignKey(p => p.OrganizerId);*/
         /*
         builder.Entity<Organizer>()
             .HasMany(p => p.Payments)

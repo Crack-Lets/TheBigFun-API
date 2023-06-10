@@ -29,7 +29,7 @@ public class EventRepository :BaseRepository, IEventRepository
         return await _context.Events.FindAsync(id);
     }
 
-    public async Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId)
+    /*public async Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId)
     {
         return await _context.Events
             .Where(p => p.OrganizerId == organizerId)
@@ -41,7 +41,7 @@ public class EventRepository :BaseRepository, IEventRepository
     {
         return await _context.Events.Where(p => p.OrganizerId == organizerId)
             .Include(p => p.Organizer).ToListAsync();
-    }
+    }*/
 //
     public void Update(Event events)
     {

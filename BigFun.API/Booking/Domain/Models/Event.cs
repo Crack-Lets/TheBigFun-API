@@ -15,8 +15,8 @@ public class Event
 
 
     public int OrganizerId { get; set; }
-    public Organizer Organizer { get; set; }
+    //public Organizer Organizer { get; set; }
 
 
-    public IList<Event> Events { get; set; } = new List<Event>();
+    //public IList<Event> Events { get; set; } = new List<Event>();
 }

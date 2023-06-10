@@ -57,10 +57,10 @@ public class EventService : IEventService
         }
     }
     //AGREGADO DE ISA
-    public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
+    /*public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
     {
         return await _eventRepository.FindByOrganizerIdAsync(organizerId);
-    }
+    }*/
 //
     public async Task<EventResponse> DeleteAsync(int eventId)
     {
