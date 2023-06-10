@@ -14,8 +14,8 @@ public class AppDbContext : DbContext
     
     
     public DbSet<Attendee> Attendees { get; set; }
-    
-    
+    public DbSet<Organizer> Organizers { get; set; }
+    public DbSet<Event> Events { get; set;}
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -32,10 +32,46 @@ public class AppDbContext : DbContext
 
         //builder.Entity<Attendee>
 
+        // Relationships
+        builder.Entity<Organizer>()
+            .HasMany(p => p.Events)
+            .WithOne(p => p.Organizer)
+            .HasForeignKey(p => p.OrganizerId);
+        /*
+        builder.Entity<Organizer>()
+            .HasMany(p => p.Payments)
+            .WithOne(p => p.Organizer)
+            .HasForeignKey(p => p.OrganizerId);
+        */
+        builder.Entity<Organizer>().ToTable("Organizers");
+        builder.Entity<Organizer>().HasKey(p => p.Id);
+        builder.Entity<Organizer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Organizer>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
+        builder.Entity<Organizer>().Property(p => p.Name).IsRequired().HasMaxLength(255);
+        builder.Entity<Organizer>().Property(p => p.Email).IsRequired().HasMaxLength(255);
+
+       
+        
 
 
+        builder.Entity<Event>().ToTable("Events");
+        builder.Entity<Event>().HasKey(p => p.Id);
+        builder.Entity<Event>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Event>().Property(p => p.Name).IsRequired().HasMaxLength(50);
+        builder.Entity<Event>().Property(p => p.Address).IsRequired().HasMaxLength(240);
+        builder.Entity<Event>().Property(p => p.Capacity).IsRequired();
+        builder.Entity<Event>().Property(p => p.Image).IsRequired().HasMaxLength(500);
+        builder.Entity<Event>().Property(p => p.Datetime).IsRequired();
+        builder.Entity<Event>().Property(p => p.Cost).IsRequired();
+        builder.Entity<Event>().Property(p => p.District).IsRequired();
+        
+        //FALTA Relations
+        // Apply Snake Case Naming Convention
         
         builder.UseSnakeCaseNamingConvention();
+
+
+
 
     }
 }

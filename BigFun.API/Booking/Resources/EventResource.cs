@@ -1,6 +1,8 @@
-namespace BigFun.API.Booking.Domain.Models;
+using BigFun.API.Booking.Domain.Models;
 
-public class Event
+namespace BigFun.API.Booking.Resources;
+
+public class EventResource
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -10,13 +12,8 @@ public class Event
     public DateTime Datetime { get; set;}
     public int Cost { get; set; }
     public string District { get; set; }
-    
-    //Relationships
-
-
+   //AGREGADO DE ISA
     public int OrganizerId { get; set; }
     public Organizer Organizer { get; set; }
-
-
-    public IList<Event> Events { get; set; } = new List<Event>();
+    
 }
