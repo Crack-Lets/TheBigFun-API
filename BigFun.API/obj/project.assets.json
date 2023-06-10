@@ -7424,19 +7424,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\ISABELLA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\BigFun.API.csproj",
+      "projectUniqueName": "C:\\Curso_app web\\appweb_api\\BigFun.API\\BigFun.API.csproj",
       "projectName": "BigFun.API",
-      "projectPath": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\BigFun.API.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "D:\\aplicaciones web\\TheBigFun-API\\BigFun.API\\obj\\",
+      "projectPath": "C:\\Curso_app web\\appweb_api\\BigFun.API\\BigFun.API.csproj",
+      "packagesPath": "C:\\Users\\ISABELLA\\.nuget\\packages\\",
+      "outputPath": "C:\\Curso_app web\\appweb_api\\BigFun.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ISABELLA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7518,7 +7523,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
