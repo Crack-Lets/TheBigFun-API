@@ -9,5 +9,7 @@ public class ResourceToModelProfile : Profile
     public ResourceToModelProfile()
     {
         CreateMap<SaveAttendeeResource, Attendee>();
+
+        CreateMap<SaveEventResource, Event>();
     }
 }
