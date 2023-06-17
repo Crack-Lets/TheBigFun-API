@@ -5,6 +5,7 @@ namespace BigFun.API.Booking.Domain.Repositories;
 public interface IEventRepository
 {
     Task<IEnumerable<Event>> ListAsync();
+    Task<IEnumerable<Event>> ListByAttendeeAsync(int attendeeId);
     Task AddSync (Event events);
     Task<Event> FindByIdAsync(int id);
     //Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId);

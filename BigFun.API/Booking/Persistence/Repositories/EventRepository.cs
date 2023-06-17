@@ -17,6 +17,14 @@ public class EventRepository :BaseRepository, IEventRepository
         return await _context.Events.ToListAsync();
     }
 
+    public async Task<IEnumerable<Event>> ListByAttendeeAsync(int attendeeId)
+    {
+        var eventsByAttendee = _context.Attendees.Where(u => u.Id == attendeeId)
+            .SelectMany(u => u.EventsListByAttendee).ToList();
+
+        return eventsByAttendee;
+    }
+
     public async Task AddSync(Event events)
     {
         await _context.Events.AddAsync(events);

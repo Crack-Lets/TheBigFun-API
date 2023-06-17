@@ -26,6 +26,12 @@ public class AttendeeService: IAttendeeService
         return await _attendeeRepository.ListAsync();
     }
 
+    public async Task<IEnumerable<Event>> ListEventsByAttendeeAsync(int attendeeId)
+    {
+        return await _eventRepository.ListByAttendeeAsync(attendeeId);
+    }
+    
+
     public async Task<AttendeeResponse> SaveAsync(Attendee attendee)
     {
         var existingAttendeeWithUserName = await _attendeeRepository.FindByUserName(attendee.UserName);
@@ -103,13 +109,20 @@ public class AttendeeService: IAttendeeService
         var attendee = await _attendeeRepository.FindByIdAsync(attendeeId);
         var eventt = await _eventRepository.FindByIdAsync(eventId);
 
-        if (attendee != null && eventt != null)
+        if (attendee == null || eventt == null)
+        {
+            return new AttendeeResponse("one of the ids doesn't exist");
+        }
+
+        try
         {
             attendee.EventsListByAttendee.Add(eventt);
             await _unitOfWork.CompleteAsync();
-            return new AttendeeResponse("The event was added successfully");
+            return new AttendeeResponse(attendee);
         }
-        return new AttendeeResponse("The event don't was added successfully");
-
+        catch (Exception e)
+        {
+            return new AttendeeResponse($"An error occurred while adding event to attendee : {e.Message}");
+        }
     }
 }
