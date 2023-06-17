@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lt7K6hg752daubat+YlwRB/TdmA9ayvnrJ+7mmswGnApKlAeoVDNi3lwGUQ4Jfp5Cnq4J/sNZl5MH3lJ+r3DHQ==",
+  "dgSpecHash": "mZ3yI73YOPdku/YZHELseQiXuGJqEiIENan4sOAAy5az/00fCR2GwL2yfphg3ZbonI8fsADlNRHtCEVwB4vA+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\BigFun.API.csproj",
+  "projectFilePath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Raul\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Raul\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

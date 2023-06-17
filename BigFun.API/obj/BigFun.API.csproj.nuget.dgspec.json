@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\BigFun.API.csproj": {}
+    "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\BigFun.API.csproj": {
+    "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\BigFun.API.csproj",
+        "projectUniqueName": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj",
         "projectName": "BigFun.API",
-        "projectPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\BigFun.API.csproj",
+        "projectPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj",
         "packagesPath": "C:\\Users\\Raul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFun.API\\BigFun.API\\obj\\",
+        "outputPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Raul\\AppData\\Roaming\\NuGet\\NuGet.Config",
