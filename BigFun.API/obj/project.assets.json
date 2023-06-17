@@ -7347,19 +7347,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kevin Oliva\\.nuget\\packages\\": {}
+    "C:\\Users\\Raul\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WebTheBigFun-API\\BigFun.API\\BigFun.API.csproj",
+      "projectUniqueName": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj",
       "projectName": "BigFun.API",
-      "projectPath": "D:\\WebTheBigFun-API\\BigFun.API\\BigFun.API.csproj",
-      "packagesPath": "C:\\Users\\Kevin Oliva\\.nuget\\packages\\",
-      "outputPath": "D:\\WebTheBigFun-API\\BigFun.API\\obj\\",
+      "projectPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\BigFun.API.csproj",
+      "packagesPath": "C:\\Users\\Raul\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Raul\\OneDrive - Universidad Peruana de Ciencias\\CICLO 23 - 1\\APP WEB\\Trabajo Final\\The Big Fun\\BigFunAPI\\BigFun.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Kevin Oliva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Raul\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7433,7 +7433,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
