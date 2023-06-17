@@ -30,6 +30,9 @@ public class AppDbContext : DbContext
         builder.Entity<Attendee>().Property(p => p.Name).IsRequired().HasMaxLength(255);
         builder.Entity<Attendee>().Property(p => p.Email).IsRequired().HasMaxLength(255);
 
+        builder.Entity<Attendee>().HasMany(p => p.EventsListByAttendee)
+            .WithMany(p => p.AttendeesListByEvent).UsingEntity(p => p.ToTable("AttendeeEvent"));
+
         //builder.Entity<Attendee>
 
         // Relationships

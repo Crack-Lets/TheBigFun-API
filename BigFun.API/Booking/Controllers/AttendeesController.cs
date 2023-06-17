@@ -48,6 +48,22 @@ public class AttendeesController : ControllerBase
 
         return Ok(attendeeResource);
     }
+    
+    [HttpPost("{attendeeId}/events/{eventId}")]
+    public async Task<IActionResult> AddEventToAttendee(int attendeeId,int eventId)
+    {
+        try
+        {
+            await _attendeeService.AddEventToAttendee(attendeeId, eventId);
+            return Ok("The event was added successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+    }
+    
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveAttendeeResource resource)

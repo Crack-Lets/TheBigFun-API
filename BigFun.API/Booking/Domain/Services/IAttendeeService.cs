@@ -9,4 +9,6 @@ public interface IAttendeeService
     Task<AttendeeResponse> SaveAsync(Attendee attendee);
     Task<AttendeeResponse> UpdateAsync(int id, Attendee attendee);
     Task<AttendeeResponse> DeleteAsync(int id);
+
+    Task<AttendeeResponse> AddEventToAttendee(int attendeeId, int eventId);
 }

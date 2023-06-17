@@ -11,12 +11,14 @@ public class AttendeeService: IAttendeeService
 
     private readonly IAttendeeRepository _attendeeRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IEventRepository _eventRepository;
 
 
-    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork)
+    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork, IEventRepository eventRepository)
     {
         _attendeeRepository = attendeeRepository;
         _unitOfWork = unitOfWork;
+        _eventRepository = eventRepository;
     }
 
     public async Task<IEnumerable<Attendee>> ListAsync()
@@ -94,5 +96,20 @@ public class AttendeeService: IAttendeeService
         {
             return new AttendeeResponse($"An error ocurred while deleting the attendee : {e.Message}");
         }
+    }
+
+    public async Task<AttendeeResponse> AddEventToAttendee(int attendeeId, int eventId)
+    {
+        var attendee = await _attendeeRepository.FindByIdAsync(attendeeId);
+        var eventt = await _eventRepository.FindByIdAsync(eventId);
+
+        if (attendee != null && eventt != null)
+        {
+            attendee.EventsListByAttendee.Add(eventt);
+            await _unitOfWork.CompleteAsync();
+            return new AttendeeResponse("The event was added successfully");
+        }
+        return new AttendeeResponse("The event don't was added successfully");
+
     }
 }
