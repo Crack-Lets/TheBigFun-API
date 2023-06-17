@@ -26,6 +26,14 @@ public class AttendeeService: IAttendeeService
 
     public async Task<AttendeeResponse> SaveAsync(Attendee attendee)
     {
+        var existingAttendeeWithUserName = await _attendeeRepository.FindByUserName(attendee.UserName);
+        var existingAttendeeWithEmail = await _attendeeRepository.FindByEmail(attendee.Email);
+        
+        
+        if (existingAttendeeWithUserName != null && existingAttendeeWithEmail!=null)
+            return new AttendeeResponse("An attendee with the same user name and email already exist");
+        
+        
         try
         {
             await _attendeeRepository.AddAsync(attendee);
