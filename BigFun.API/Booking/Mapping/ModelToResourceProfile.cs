@@ -4,10 +4,15 @@ using BigFun.API.Booking.Resources;
 
 namespace BigFun.API.Booking.Mapping;
 
-public class ModelToResourceProfile:Profile
+public class ModelToResourceProfile : Profile
 {
+
     public ModelToResourceProfile()
     {
-        CreateMap<Organizer, OrganizerResource>();
+
+        CreateMap<Event, EventResource>();
+        CreateMap<Organizer,OrganizerResource>();
+        CreateMap<Attendee, AttendeeResource>();
     }
+    
 }
