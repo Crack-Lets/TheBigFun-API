@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gyq1FHGvUwS5dMpb7XDpFYDwiUFyDJ/HNNvNMyyPFmCz5L+7jl+je3WdFKmIEknxgUGlaE4vWZ85u8EDm+ds6w==",
+  "dgSpecHash": "QB31rAMDS27qCHH1qGhk9kjzShxXTDAs9/3EOAEbyh8lT8z0WnsOUBZVr1F3rQQkpJS4B4UNRJ3ilU4HVPpt/Q==",
   "success": true,
-  "projectFilePath": "C:\\Curso_app web\\appweb_api\\BigFun.API\\BigFun.API.csproj",
+  "projectFilePath": "C:\\Curso_app web\\appwebAPI\\BigFun.API\\BigFun.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ISABELLA\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ISABELLA\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
