@@ -19,6 +19,8 @@ public class OrganizerPaymentsController: ControllerBase
         _mapper = mapper;
     }
     
+    
+    /*
     [HttpGet]
     public async Task<IEnumerable<PaymentResource>> GetAllByOrganizerIdAsync(int organizerId)
     {
@@ -27,7 +29,7 @@ public class OrganizerPaymentsController: ControllerBase
         var resources = _mapper.Map<IEnumerable<Payment>, IEnumerable<PaymentResource>>(payments);
 
         return resources;
-    }
+    }*/
     
     // booking-> services->PaymentService
     /*

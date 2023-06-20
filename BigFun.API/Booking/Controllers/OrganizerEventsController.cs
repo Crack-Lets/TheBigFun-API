@@ -1,5 +1,7 @@
 using AutoMapper;
 using BigFun.API.Booking.Domain.Models;
+using BigFun.API.Booking.Domain.Services;
+using BigFun.API.Booking.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BigFun.API.Booking.Controllers;
@@ -17,6 +19,8 @@ public class OrganizerEventsController: ControllerBase
         _mapper = mapper;
     }
     
+    
+    /*
     [HttpGet]
     public async Task<IEnumerable<EventResource>> GetAllByOrganizerIdAsync(int organizerId)
     {
@@ -25,5 +29,5 @@ public class OrganizerEventsController: ControllerBase
         var resources = _mapper.Map<IEnumerable<Event>, IEnumerable<EventResource>>(events);
 
         return resources;
-    }
+    }*/
 }
