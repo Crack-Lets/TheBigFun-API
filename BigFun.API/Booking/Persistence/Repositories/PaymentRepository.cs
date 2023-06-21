@@ -7,7 +7,7 @@ using BigFun.API.Shared.Persistence.Repositories;
 
 namespace BigFun.API.Booking.Persistence.Repositories;
 
-public class PaymentRepository : BaseRepository, IPaymentRepository
+/*public class PaymentRepository : BaseRepository, IPaymentRepository
 {
     public PaymentRepository(AppDbContext context) : base(context)
     {
@@ -53,4 +53,4 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
             .ToList();
         return paymentsByEvent;
     }
-}
+}*/
