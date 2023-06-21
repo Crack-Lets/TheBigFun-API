@@ -42,6 +42,7 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().HasMany(p => p.EventsListByOrganizer)
             .WithOne(e => e.Organizer).HasForeignKey(z => z.OrganizerId);
 
+        
 
         builder.Entity<Event>().ToTable("Events");
         builder.Entity<Event>().HasKey(p => p.Id);
