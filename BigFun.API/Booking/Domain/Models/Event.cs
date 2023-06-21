@@ -13,9 +13,8 @@ public class Event
     
     //Relationships
 
-
     public int OrganizerId { get; set; }
-    //public Organizer Organizer { get; set; }
+    public Organizer Organizer { get; set; }
     public IList<Attendee> AttendeesListByEvent{ get; set; } = new List<Attendee>();
 
     //public IList<Event> Events { get; set; } = new List<Event>();

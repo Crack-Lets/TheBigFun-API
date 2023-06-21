@@ -25,6 +25,16 @@ public class EventRepository :BaseRepository, IEventRepository
         return eventsByAttendee;
     }
 
+    public async Task<IEnumerable<Event>> ListByOrganizerAsync(int organizerId)
+    {
+        var eventsByOrganizer = _context.Events.Where(u => u.OrganizerId == organizerId)
+            .ToList();
+
+        return eventsByOrganizer;
+    }
+    
+    
+
     public async Task AddSync(Event events)
     {
         await _context.Events.AddAsync(events);

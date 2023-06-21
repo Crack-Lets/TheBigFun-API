@@ -9,6 +9,7 @@ public interface IAttendeeService
     
     Task<IEnumerable<Event>> ListEventsByAttendeeAsync(int attendeeId);
     
+    
     Task<AttendeeResponse> SaveAsync(Attendee attendee);
     Task<AttendeeResponse> UpdateAsync(int id, Attendee attendee);
     Task<AttendeeResponse> DeleteAsync(int id);

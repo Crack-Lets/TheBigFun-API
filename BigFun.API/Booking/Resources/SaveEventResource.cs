@@ -9,5 +9,5 @@ public class SaveEventResource
     public DateTime dateTime { get; set;}
     public int Cost { get; set; }
     public string District { get; set; }
-    public int OrganizerId { get; set; }
+    //public int OrganizerId { get; set; }
 }

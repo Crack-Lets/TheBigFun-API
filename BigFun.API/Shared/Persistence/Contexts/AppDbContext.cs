@@ -41,8 +41,8 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().Property(p => p.Name).IsRequired().HasMaxLength(255);
         builder.Entity<Organizer>().Property(p => p.Email).IsRequired().HasMaxLength(255);
 
-       
-        
+        builder.Entity<Organizer>().HasMany(p => p.EventsListByOrganizer)
+            .WithOne(e => e.Organizer).HasForeignKey(z => z.OrganizerId);
 
 
         builder.Entity<Event>().ToTable("Events");

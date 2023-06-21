@@ -101,21 +101,5 @@ public class AttendeesController : ControllerBase
         return Ok(attendeeResource);
     }
     
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
 
 }
