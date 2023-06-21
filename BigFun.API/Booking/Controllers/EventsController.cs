@@ -10,7 +10,7 @@ namespace BigFun.API.Booking.Controllers;
 
 
 [ApiController]
-[Route("/api/v1/[controller]")]
+[Route("/api/v1[controller]")]
 [Produces("application/json")]
 [SwaggerTag("Create, read, update and delete Attendees")]
 public class EventsController: ControllerBase

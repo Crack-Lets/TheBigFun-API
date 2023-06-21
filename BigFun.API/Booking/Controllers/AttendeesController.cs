@@ -31,17 +31,6 @@ public class AttendeesController : ControllerBase
 
         return resources;
     }
-    
-    [HttpGet("{attendeeId}/events")]
-    public async Task<IEnumerable<EventResource>> GetAllEventsByAttendeeAsync(int attendeeId)
-    {
-        var eventsByAttendee = await _attendeeService.ListEventsByAttendeeAsync(attendeeId);
-        var resources = _mapper.Map<IEnumerable<Event>, IEnumerable<EventResource>>(eventsByAttendee);
-        return resources;
-    }
-    
-    
-    
 
     
     [HttpPost]
@@ -59,17 +48,6 @@ public class AttendeesController : ControllerBase
 
         return Ok(attendeeResource);
     }
-    
-    [HttpPost("{attendeeId}/events/{eventId}")]
-    public async Task<IActionResult> AddEventToAttendee(int attendeeId,int eventId)
-    {
-        var result= await _attendeeService.AddEventToAttendee(attendeeId, eventId);
-
-        if (!result.Success) return BadRequest(result.Message);
-        return Ok("The event was added");
-
-    }
-    
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveAttendeeResource resource)
