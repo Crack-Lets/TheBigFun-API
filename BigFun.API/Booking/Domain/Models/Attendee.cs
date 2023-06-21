@@ -8,6 +8,6 @@ public class Attendee
     public string Email { get; set; }
 
     // Relationships
-    //public IList<Event> Events { get; set; } = new List<Event>();
+    public IList<Event> EventsListByAttendee { get; set; } = new List<Event>();
     //public IList<Payment> Payments { get; set; } = new List<Payment>();
 }
