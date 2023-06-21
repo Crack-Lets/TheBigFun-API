@@ -114,6 +114,8 @@ public class AttendeeService: IAttendeeService
             return new AttendeeResponse("one of the ids doesn't exist");
         }
 
+        
+        
         try
         {
             attendee.EventsListByAttendee.Add(eventt);

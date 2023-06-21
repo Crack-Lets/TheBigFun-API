@@ -41,6 +41,8 @@ public class EventRepository :BaseRepository, IEventRepository
     }
     
     
+    
+    
 
     public async Task<Event> FindByIdAsync(int id)
     {
