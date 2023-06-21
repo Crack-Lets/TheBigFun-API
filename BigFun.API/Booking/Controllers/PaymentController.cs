@@ -27,4 +27,19 @@ public class PaymentController
         return resources;
     }
 
+    [HttpGet("{eventId}/payments")]
+    public async Task<IEnumerable<PaymentResource>> GetPaymentsByEventIdAsync(int eventId)
+    {
+        var paymentsByEvent = await _paymentService.ListByEventIdAsync(eventId);
+        var resources = _mapper.Map<IEnumerable<Payment>, IEnumerable<PaymentResource>>(paymentsByEvent);
+        return resources;
+    }
+    
+    /*public async Task<IActionResult>>AddPaymentToEvent(int ecentId, int paymentId)
+    {
+        
+    }*/
+
+
+
 }

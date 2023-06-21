@@ -5,7 +5,7 @@ namespace BigFun.API.Booking.Resources;
 public class PaymentResource
 {
     public int Id { get; set; }
-    public JSType.Date Date { get; set; }
+    public DateTime Date { get; set; }
     public string QrImg { get; set; }
 
     PaymentResource Payment { get; set; }

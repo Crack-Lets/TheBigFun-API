@@ -13,8 +13,8 @@ public interface IOrganizerRepository
     Task<Organizer> FindByEmailAsync(string email);
 
     //esto en IEventRepository y IPaymentRepository de Booking->Domain->Repositories respectivamente
-   // Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId);
-   //Task<IEnumerable<Payment>> FindByOrganizerIdAsync(int organizerId);
+   // Task<IEnumerable<Event>> ListByEventIdAsync(int organizerId);
+   //Task<IEnumerable<Payment>> ListByEventIdAsync(int organizerId);
 
     void Update(Organizer organizer);
     void Remove(Organizer organizer);

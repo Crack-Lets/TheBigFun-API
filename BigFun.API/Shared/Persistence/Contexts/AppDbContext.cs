@@ -16,6 +16,8 @@ public class AppDbContext : DbContext
     public DbSet<Attendee> Attendees { get; set; }
     public DbSet<Organizer> Organizers { get; set; }
     public DbSet<Event> Events { get; set;}
+    
+    public DbSet<Payment> Payments { get; set;}
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -57,6 +59,16 @@ public class AppDbContext : DbContext
         builder.Entity<Event>().Property(p => p.Datetime).IsRequired();
         builder.Entity<Event>().Property(p => p.Cost).IsRequired();
         builder.Entity<Event>().Property(p => p.District).IsRequired();
+
+        builder.Entity<Event>().HasMany(p => p.PaymentsListByEvent)
+            .WithOne(f => f.Events).HasForeignKey(b => b.EventId);
+        
+        
+        builder.Entity<Payment>().ToTable("Payments");
+        builder.Entity<Payment>().HasKey(p => p.Id);
+        builder.Entity<Payment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Payment>().Property(p => p.Date).IsRequired();
+        
         
         //FALTA Relations
         // Apply Snake Case Naming Convention

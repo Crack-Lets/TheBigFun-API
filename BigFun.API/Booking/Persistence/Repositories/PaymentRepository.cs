@@ -45,11 +45,11 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
     }
 
 
-    public async Task<IEnumerable<Payment>> FindByOrganizerIdAsync(int organizerId)
+    public async Task<IEnumerable<Payment>> ListByEventIdAsync(int eventId)
     {
-        return await _context.Payments
-            .Where(p => p.OrganizerId == organizerId)
-            .Include(p => p.Organizer)
-            .ToListAsync();
+
+        var paymentsByEvent = _context.Payments.Where(p => p.EventId == eventId)
+            .ToList();
+        return paymentsByEvent;
     }
 }

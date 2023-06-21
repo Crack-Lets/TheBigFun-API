@@ -11,5 +11,6 @@ public class ResourceToModelProfile : Profile
         CreateMap<SaveAttendeeResource, Attendee>();
         CreateMap<SaveOrganizerResource,Organizer>();
         CreateMap<SaveEventResource, Event>();
+        CreateMap<SavePaymentResource, Payment>();
     }
 }
