@@ -71,11 +71,20 @@ public sealed class OrganizersServiceStepDefinitions:WebApplicationFactory<Progr
     [Given(@"A Organizer is already stored")]
     public async void GivenAOrganizerIsAlreadyStored(Table saveOrganizerResource)
     {
-        var resource = saveOrganizerResource.CreateSet<SaveOrganizerResource>().First(); 
-        var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json); Response = Client.PostAsync(BaseUri, content); 
-        var responseData = await Response.Result.Content.ReadAsStringAsync(); 
-        var responseResource = JsonConvert.DeserializeObject<OrganizerResource>(responseData); 
-      
+        var resource = saveOrganizerResource.CreateSet<SaveOrganizerResource>().First();
+        var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json);
+        Response = Client.PostAsync(BaseUri, content);
+        var responseData = await Response.Result.Content.ReadAsStringAsync();
+        var responseResource = new OrganizerResource();
+        try
+        {
+            responseResource = JsonConvert.DeserializeObject<OrganizerResource>(responseData);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
         Assert.Equal(resource.Email, responseResource.Email);
     }
 
