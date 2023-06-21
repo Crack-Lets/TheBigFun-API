@@ -6,8 +6,13 @@ namespace BigFun.API.Booking.Mapping;
 
 public class ModelToResourceProfile : Profile
 {
+
     public ModelToResourceProfile()
     {
-        CreateMap<Payment, PaymentResource>();
+
+        CreateMap<Event, EventResource>();
+        CreateMap<Organizer,OrganizerResource>();
+        CreateMap<Attendee, AttendeeResource>();
     }
+    
 }

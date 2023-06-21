@@ -10,17 +10,29 @@ public class OrganizerService: IOrganizerService
 {
     private readonly IOrganizerRepository _organizerRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IEventRepository _eventRepository;
 
 
-    public OrganizerService(IOrganizerRepository organizerRepository, IUnitOfWork unitOfWork)
+    public OrganizerService(IOrganizerRepository organizerRepository, IUnitOfWork unitOfWork,IEventRepository eventRepository)
     {
         _organizerRepository = organizerRepository;
         _unitOfWork = unitOfWork;
+        _eventRepository = eventRepository;
     }
 
     public async Task<IEnumerable<Organizer>> ListAsync()
     {
         return await _organizerRepository.ListAsync();
+    }
+
+    /*public async Task<Organizer> FindByIdAsyn(int id)
+    {
+        return await 
+    }*/
+    
+    public async Task<IEnumerable<Event>> ListEventsByOrganizerAsync(int organizerId)
+    {
+        return await _eventRepository.ListByOrganizerAsync(organizerId);
     }
 
     public async Task<OrganizerResponse> SaveAsync(Organizer organizer)
@@ -78,5 +90,27 @@ public class OrganizerService: IOrganizerService
             // Do some logging stuff
             return new OrganizerResponse($"An error occurred while deleting the organizer: {e.Message}");
         }    
+    }
+
+    public async Task<OrganizerResponse> AddEventToOrganizer(int organizerId, int eventId)
+    {
+        var organizer = await _organizerRepository.FindByIdAsync(organizerId);
+        var eventt = await _eventRepository.FindByIdAsync(eventId);
+
+        if (organizer == null || eventt == null)
+        {
+            return new OrganizerResponse("one of the ids doesn't exist");
+        }
+
+        try
+        {
+            organizer.EventsListByOrganizer.Add(eventt);
+            await _unitOfWork.CompleteAsync();
+            return new OrganizerResponse(organizer);
+        }
+        catch (Exception e)
+        {
+            return new OrganizerResponse($"An error occurred while adding event to attendee : {e.Message}");
+        }
     }
 }

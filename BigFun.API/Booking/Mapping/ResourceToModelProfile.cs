@@ -8,6 +8,8 @@ public class ResourceToModelProfile : Profile
 {
     public ResourceToModelProfile()
     {
-        CreateMap<SavePaymentResource, Payment>();
+        CreateMap<SaveAttendeeResource, Attendee>();
+        CreateMap<SaveOrganizerResource,Organizer>();
+        CreateMap<SaveEventResource, Event>();
     }
 }

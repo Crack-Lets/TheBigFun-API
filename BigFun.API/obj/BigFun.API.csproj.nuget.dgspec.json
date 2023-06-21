@@ -58,7 +58,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0-preview.4.23259.3, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
