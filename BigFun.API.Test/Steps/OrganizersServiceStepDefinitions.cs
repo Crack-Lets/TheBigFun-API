@@ -1,60 +1,90 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+using System.Net.Mime;
 using System.Text;
-using TechTalk.SpecFlow;
+using BigFun.API.Booking.Resources;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using Newtonsoft.Json;
+using SpecFlow.Internal.Json;
+using TechTalk.SpecFlow.Assist;
+using Xunit;
 
 namespace BigFun.API.Test.Steps;
 
 [Binding]
-public sealed class OrganizersServiceStepDefinitions
+public sealed class OrganizersServiceStepDefinitions:WebApplicationFactory<Program>
 {
-    // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
+    private readonly WebApplicationFactory<Program> _factory;
 
-    private readonly ScenarioContext _scenarioContext;
-
-    public OrganizersServiceStepDefinitions(ScenarioContext scenarioContext)
+    public OrganizersServiceStepDefinitions(WebApplicationFactory<Program> factory)
     {
-        _scenarioContext = scenarioContext;
+        _factory = factory;
+    }
+    
+    private HttpClient Client { get; set; } 
+    private Uri BaseUri { get; set; } 
+    private Task<HttpResponseMessage> Response { get; set; }
+
+
+    //indica que este paso se ejecutará cuando se cumpla la condición de que el endpoint https://localhost:{port}/api/v{version}/organizers esté disponible.
+    [Given(@"the Endpoint https://localhost:(.*)/api/v(.*)/organizers is available")]
+    public void GivenTheEndpointHttpsLocalhostApiVOrganizersIsAvailable(int port, int version)
+    { 
+        BaseUri = new Uri($"https://localhost:{port}/api/v{version}/organizers"); 
+        Client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            BaseAddress = BaseUri
+        });    
+    }
+    
+    //indica que este paso se ejecutará cuando se envíe una solicitud POST.
+    [When(@"a Post Request is sent")]
+    public void WhenAPostRequestIsSent(Table saveOrganizerResource)
+    {
+        var resource = saveOrganizerResource.CreateSet<SaveOrganizerResource>().First(); 
+        var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json); 
+        Response = Client.PostAsync(BaseUri, content);    
+    }
+    
+    //indica que este paso se ejecutará para verificar el estado de la respuesta.
+    [Then(@"A Response is received with Status (.*)")]
+    public void ThenAResponseIsReceivedWithStatus(int expectedStatus)
+    {
+        var expectedStatusCode = ((HttpStatusCode)expectedStatus).ToString(); 
+        var actualStatusCode = Response.Result.StatusCode.ToString(); 
+      
+        Assert.Equal(expectedStatusCode, actualStatusCode);    
     }
 
-    [Given("the first number is (.*)")]
-    public void GivenTheFirstNumberIs(int number)
+    //indica que este paso se ejecutará para verificar la presencia del recurso de organizer en el cuerpo de la respuesta.
+    [Then(@"a Organizer Resource is included in Response Body")]
+    public async Task ThenAOrganizerResourceIsIncludedInResponseBody(Table expectedOrganizerResource)
     {
-        //TODO: implement arrange (precondition) logic
-        // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-        // To use the multiline text or the table argument of the scenario,
-        // additional string/Table parameters can be defined on the step definition
-        // method. 
-
-        _scenarioContext.Pending();
+        var expectedResource = expectedOrganizerResource.CreateSet<OrganizerResource>().First(); 
+        var responseData = await Response.Result.Content.ReadAsStringAsync(); 
+        var resource = JsonConvert.DeserializeObject<OrganizerResource>(responseData); 
+      
+        Assert.Equal(expectedResource.Email, resource.Email);    
     }
 
-    [Given("the second number is (.*)")]
-    public void GivenTheSecondNumberIs(int number)
+    //indica que este paso se ejecutará para simular la existencia de un organizer almacenado previamente.
+    [Given(@"A Organizer is already stored")]
+    public async void GivenAOrganizerIsAlreadyStored(Table saveOrganizerResource)
     {
-        //TODO: implement arrange (precondition) logic
-        // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-        // To use the multiline text or the table argument of the scenario,
-        // additional string/Table parameters can be defined on the step definition
-        // method. 
-
-        _scenarioContext.Pending();
+        var resource = saveOrganizerResource.CreateSet<SaveOrganizerResource>().First(); 
+        var content = new StringContent(resource.ToJson(), Encoding.UTF8, MediaTypeNames.Application.Json); Response = Client.PostAsync(BaseUri, content); 
+        var responseData = await Response.Result.Content.ReadAsStringAsync(); 
+        var responseResource = JsonConvert.DeserializeObject<OrganizerResource>(responseData); 
+      
+        Assert.Equal(resource.Email, responseResource.Email);
     }
 
-    [When("the two numbers are added")]
-    public void WhenTheTwoNumbersAreAdded()
+    //indica que este paso se ejecutará para verificar si se devuelve un mensaje de error con el valor esperado.
+    [Then(@"An Error Message is returned with value ""(.*)""")]
+    public void ThenAnErrorMessageIsReturnedWithValue(string expectedMessage)
     {
-        //TODO: implement act (action) logic
-
-        _scenarioContext.Pending();
+        var message = Response.Result.Content.ReadAsStringAsync().Result; 
+        Assert.Equal(expectedMessage, message);
     }
-
-    [Then("the result should be (.*)")]
-    public void ThenTheResultShouldBe(int result)
-    {
-        //TODO: implement assert (verification) logic
-
-        _scenarioContext.Pending();
-    }
+    
 }
