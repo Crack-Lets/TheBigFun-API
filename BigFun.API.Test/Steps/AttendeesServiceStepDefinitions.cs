@@ -28,7 +28,7 @@ public class AttendeesServiceStepDefinitions:WebApplicationFactory<Program>
     [Given(@"the Endpoint https://localhost:(.*)/api/v(.*)/attendees is available")]
     public void GivenTheEndpointHttpsLocalhostApiVAttendeesIsAvailable(int port, int version)
     {
-        BaseUri = new Uri($"https://localhost:{port}/api/v{version}/organizers"); 
+        BaseUri = new Uri($"https://localhost:{port}/api/v{version}/attendees"); 
         Client = _factory.CreateClient(new WebApplicationFactoryClientOptions
         {
             BaseAddress = BaseUri
