@@ -44,6 +44,8 @@ builder.Services.AddScoped<IAttendeeRepository, AttendeeRepository>();
 builder.Services.AddScoped<IAttendeeService, AttendeeService>();
 builder.Services.AddScoped<IOrganizerRepository, OrganizerRepository>();
 builder.Services.AddScoped<IOrganizerService, OrganizerService>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
