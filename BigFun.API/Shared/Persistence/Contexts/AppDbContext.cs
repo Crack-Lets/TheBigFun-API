@@ -34,6 +34,7 @@ public class AppDbContext : DbContext
             .WithMany(p => p.AttendeesListByEvent).UsingEntity(p => p.ToTable("AttendeeEvent"));
 
 
+        
         builder.Entity<Organizer>().ToTable("Organizers");
         builder.Entity<Organizer>().HasKey(p => p.Id);
         builder.Entity<Organizer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
@@ -44,6 +45,7 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().HasMany(p => p.EventsListByOrganizer)
             .WithOne(e => e.Organizer).HasForeignKey(z => z.OrganizerId);
 
+        
 
         builder.Entity<Event>().ToTable("Events");
         builder.Entity<Event>().HasKey(p => p.Id);
