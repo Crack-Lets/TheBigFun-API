@@ -15,7 +15,8 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
 
     public async Task<IEnumerable<Payment>> ListAsync()
     {
-        return await _context.Payments.ToListAsync();
+        //return await _context.Payments.ToListAsync();   esto da error
+        return _context.Payments.ToList(); // asi q lo reemplazon por esto
     }
 
     public async Task AddAsync(Payment payment)
