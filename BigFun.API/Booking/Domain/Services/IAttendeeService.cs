@@ -15,4 +15,6 @@ public interface IAttendeeService
     Task<AttendeeResponse> DeleteAsync(int id);
 
     Task<AttendeeResponse> AddEventToAttendee(int attendeeId, int eventId);
+    
+    Task<AttendeeResponse> AddPaymentToAttendee(int attendeeId, int paymentId);
 }

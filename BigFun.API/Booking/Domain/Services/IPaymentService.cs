@@ -10,6 +10,6 @@ public interface IPaymentService
     Task<PaymentResponse> UpdateAsync(int id, Payment payment);
     Task<PaymentResponse> DeleteAsync(int id);
     Task<IEnumerable<Payment>> ListByEventIdAsync(int eventId);
+    Task<IEnumerable<Payment>> ListByAttendeeIdAsync(int attendeeId);
     
-
 }

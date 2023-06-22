@@ -25,7 +25,7 @@ public class AppDbContext : DbContext
         
         
         //  ENTITIES
-        builder.Entity<Attendee>().ToTable("Attendees");
+        builder.Entity<Attendee>().ToTable("Attendee");
         builder.Entity<Attendee>().HasKey(p => p.Id);
         builder.Entity<Attendee>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Attendee>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
@@ -34,6 +34,9 @@ public class AppDbContext : DbContext
 
         builder.Entity<Attendee>().HasMany(p => p.EventsListByAttendee)
             .WithMany(p => p.AttendeesListByEvent).UsingEntity(p => p.ToTable("AttendeeEvent"));
+
+        builder.Entity<Attendee>().HasMany(x => x.PaymentsListByAttendee)
+            .WithOne(j => j.Attendee).HasForeignKey(q => q.AttendeeId);
 
 
         

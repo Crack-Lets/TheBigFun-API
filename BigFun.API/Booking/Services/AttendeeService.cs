@@ -12,13 +12,15 @@ public class AttendeeService: IAttendeeService
     private readonly IAttendeeRepository _attendeeRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEventRepository _eventRepository;
+    private readonly IPaymentRepository _paymentRepository;
 
 
-    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork, IEventRepository eventRepository)
+    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork, IEventRepository eventRepository, IPaymentRepository paymentRepository)
     {
         _attendeeRepository = attendeeRepository;
         _unitOfWork = unitOfWork;
         _eventRepository = eventRepository;
+        _paymentRepository = paymentRepository;
     }
 
     public async Task<IEnumerable<Attendee>> ListAsync()
@@ -126,5 +128,28 @@ public class AttendeeService: IAttendeeService
         {
             return new AttendeeResponse($"An error occurred while adding event to attendee : {e.Message}");
         }
+    }
+
+    public async Task<AttendeeResponse> AddPaymentToAttendee(int attendeeId, int paymentId)
+    {
+        var attendee = await _attendeeRepository.FindByIdAsync(attendeeId);
+        var payment = await _paymentRepository.FindByIdAsync(paymentId);
+
+        if (attendee == null || payment == null)
+            return new AttendeeResponse("The attendee or  payment doesn't exist");
+
+        try
+        {
+            attendee.PaymentsListByAttendee.Add(payment);
+            await _unitOfWork.CompleteAsync();
+            return new AttendeeResponse(attendee);
+        }
+        catch (Exception e)
+        {
+            return new AttendeeResponse($"An error occurred while adding payment to attendee : {e.Message}");
+
+        }
+
+
     }
 }

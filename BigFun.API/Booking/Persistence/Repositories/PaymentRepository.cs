@@ -53,4 +53,10 @@ public class PaymentRepository : BaseRepository, IPaymentRepository
             .ToList();
         return paymentsByEvent;
     }
+
+    public async Task<IEnumerable<Payment>> ListByAttendeeIdAsync(int attendeeId)
+    {
+        var paymentsByAttendee = _context.Payments.Where(l => l.AttendeeId == attendeeId).ToList();
+        return paymentsByAttendee;
+    }
 }

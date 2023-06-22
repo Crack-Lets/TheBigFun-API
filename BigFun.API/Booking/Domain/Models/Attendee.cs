@@ -9,5 +9,6 @@ public class Attendee
 
     // Relationships
     public IList<Event> EventsListByAttendee { get; set; } = new List<Event>();
-    //public IList<Payment> Payments { get; set; } = new List<Payment>();
+    
+    public IList<Payment> PaymentsListByAttendee { get; set; } = new List<Payment>();
 }

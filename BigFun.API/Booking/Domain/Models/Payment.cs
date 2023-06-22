@@ -8,4 +8,6 @@ public class Payment
     public DateTime Date { get; set; }
     public int EventId { get; set; }
     public Event Events { get; set; }
+    public int AttendeeId { get; set; }
+    public Attendee Attendee { get; set; }
 }

@@ -13,7 +13,7 @@ namespace BigFun.API.Booking.Controllers;
 [ApiController]
 [Route("/api/v1/[controller]")]
 [Produces("application/json")]
-[SwaggerTag("Create, read, update and delete Attendees")]
+[SwaggerTag("Create, read, update and delete Attendee")]
 public class AttendeesController : ControllerBase
 {
     private readonly IAttendeeService _attendeeService;
@@ -70,6 +70,8 @@ public class AttendeesController : ControllerBase
         return Ok(attendeeResource);
     }
     
+    
+    
     [HttpPost("{attendeeId}/events/{eventId}")]
     public async Task<IActionResult> AddEventToAttendee(int attendeeId,int eventId)
     {
@@ -80,19 +82,23 @@ public class AttendeesController : ControllerBase
 
     }
     
+    
+    
     [HttpPost("{attendeeId}/events/{eventId}/payment")]
     public async Task<IActionResult> AttendeeCreatePayment(int attendeeId,int eventId,[FromBody] SavePaymentResource resource)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
 
-        var attendee = _attendeeRepository.FindByIdAsync(attendeeId);
-        var events = _eventRepository.FindByIdAsync(eventId);
+        var attendee =await _attendeeRepository.FindByIdAsync(attendeeId);
+        var events =await _eventRepository.FindByIdAsync(eventId);
 
-        if (attendee == null || events == null) return NotFound("The attendee or the event doesn't exist");
+        if (attendee == null) return NotFound("The Attendee doesn't exist");
+        if (events == null) return NotFound("The Event doesn't exist");
 
         var payment = _mapper.Map<SavePaymentResource, Payment>(resource);
 
         payment.EventId = eventId;
+        payment.AttendeeId = attendeeId;
 
         var result = await _paymentService.SaveAsync(payment);
 
@@ -101,9 +107,9 @@ public class AttendeesController : ControllerBase
         var paymentResource = _mapper.Map<Payment, PaymentResource>(result.Resource);
 
         await _eventService.AddPaymentToEvent(eventId, result.Resource.Id);
-        
-        //FALTA AGREGAR EL PAYMENT AL USUARIO RELACION DE UNO A MUCHOS
 
+        await _attendeeService.AddPaymentToAttendee(attendeeId, result.Resource.Id);
+        
         return Ok(paymentResource);
         
     }
