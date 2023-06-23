@@ -33,7 +33,13 @@ public class EventsController: ControllerBase
         return resources;
     }
     
-    
+    [HttpGet("events/{id}")]
+    public async Task<IEnumerable<EventResource>> GetEventById(int id)
+    {
+        var events = await _eventService.ListAsync();
+        var resources = _mapper.Map<IEnumerable<Event>, IEnumerable<EventResource>>(events);
+        return resources;
+    }
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SaveEventResource resource)
     {
@@ -49,7 +55,18 @@ public class EventsController: ControllerBase
 
         return Ok(eventResource);
     }
-    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<EventResource>> GetByEventId(int id)
+    {
+        var eventItem = await _eventService.GetAsync(id);
+        if (eventItem == null)
+        {
+            return NotFound();
+        }
+
+        var resource = _mapper.Map<Event, EventResource>(eventItem.Value);
+        return resource;
+    }
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveEventResource resource)
     {

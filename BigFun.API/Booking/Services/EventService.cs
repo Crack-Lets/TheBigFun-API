@@ -3,6 +3,7 @@ using BigFun.API.Booking.Domain.Repositories;
 using BigFun.API.Booking.Domain.Services;
 using BigFun.API.Booking.Domain.Services.Communication;
 using BigFun.API.Shared.Domain.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BigFun.API.Booking.Services;
 
@@ -100,5 +101,15 @@ public class EventService : IEventService
         {
             return new EventResponse($"An error occurred while adding the payment to event: {e.Message}");
         }
+    }
+    public async Task<ActionResult<Event>> GetAsync(int id)
+    {
+        var eventItem = await _eventRepository.FindByIdAsync(id);
+        if (eventItem == null)
+        {
+            return new NotFoundResult();
+        }
+        return new ActionResult<Event>(eventItem);
+
     }
 }
