@@ -16,6 +16,8 @@ public class AppDbContext : DbContext
     public DbSet<Attendee> Attendees { get; set; }
     public DbSet<Organizer> Organizers { get; set; }
     public DbSet<Event> Events { get; set;}
+    
+    public DbSet<Payment> Payments { get; set;}
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -23,26 +25,21 @@ public class AppDbContext : DbContext
         
         
         //  ENTITIES
-        builder.Entity<Attendee>().ToTable("Attendees");
+        builder.Entity<Attendee>().ToTable("Attendee");
         builder.Entity<Attendee>().HasKey(p => p.Id);
         builder.Entity<Attendee>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Attendee>().Property(p => p.UserName).IsRequired().HasMaxLength(50);
         builder.Entity<Attendee>().Property(p => p.Name).IsRequired().HasMaxLength(255);
         builder.Entity<Attendee>().Property(p => p.Email).IsRequired().HasMaxLength(255);
 
-        //builder.Entity<Attendee>
+        builder.Entity<Attendee>().HasMany(p => p.EventsListByAttendee)
+            .WithMany(p => p.AttendeesListByEvent).UsingEntity(p => p.ToTable("AttendeeEvent"));
 
-        // Relationships
-        /*builder.Entity<Organizer>()
-            .HasMany(p => p.Events)
-            .WithOne(p => p.Organizer)
-            .HasForeignKey(p => p.OrganizerId);*/
-        /*
-        builder.Entity<Organizer>()
-            .HasMany(p => p.Payments)
-            .WithOne(p => p.Organizer)
-            .HasForeignKey(p => p.OrganizerId);
-        */
+        builder.Entity<Attendee>().HasMany(x => x.PaymentsListByAttendee)
+            .WithOne(j => j.Attendee).HasForeignKey(q => q.AttendeeId);
+
+
+        
         builder.Entity<Organizer>().ToTable("Organizers");
         builder.Entity<Organizer>().HasKey(p => p.Id);
         builder.Entity<Organizer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
@@ -50,9 +47,10 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().Property(p => p.Name).IsRequired().HasMaxLength(255);
         builder.Entity<Organizer>().Property(p => p.Email).IsRequired().HasMaxLength(255);
 
-       
-        
+        builder.Entity<Organizer>().HasMany(p => p.EventsListByOrganizer)
+            .WithOne(e => e.Organizer).HasForeignKey(z => z.OrganizerId);
 
+        
 
         builder.Entity<Event>().ToTable("Events");
         builder.Entity<Event>().HasKey(p => p.Id);
@@ -64,6 +62,16 @@ public class AppDbContext : DbContext
         builder.Entity<Event>().Property(p => p.Datetime).IsRequired();
         builder.Entity<Event>().Property(p => p.Cost).IsRequired();
         builder.Entity<Event>().Property(p => p.District).IsRequired();
+
+        builder.Entity<Event>().HasMany(p => p.PaymentsListByEvent)
+            .WithOne(f => f.Events).HasForeignKey(b => b.EventId);
+        
+        
+        builder.Entity<Payment>().ToTable("Payments");
+        builder.Entity<Payment>().HasKey(p => p.Id);
+        builder.Entity<Payment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Payment>().Property(p => p.Date).IsRequired();
+        
         
         //FALTA Relations
         // Apply Snake Case Naming Convention

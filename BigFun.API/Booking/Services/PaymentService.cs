@@ -76,4 +76,9 @@ public class PaymentService : IPaymentService
     {
         return await _paymentRepository.ListByEventIdAsync(eventId);
     }
+
+    public async Task<IEnumerable<Payment>> ListByAttendeeIdAsync(int attendeeId)
+    {
+        return await _paymentRepository.ListByAttendeeIdAsync(attendeeId);
+    }
 }

@@ -11,12 +11,16 @@ public class AttendeeService: IAttendeeService
 
     private readonly IAttendeeRepository _attendeeRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IEventRepository _eventRepository;
+    private readonly IPaymentRepository _paymentRepository;
 
 
-    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork)
+    public AttendeeService(IAttendeeRepository attendeeRepository, IUnitOfWork unitOfWork, IEventRepository eventRepository, IPaymentRepository paymentRepository)
     {
         _attendeeRepository = attendeeRepository;
         _unitOfWork = unitOfWork;
+        _eventRepository = eventRepository;
+        _paymentRepository = paymentRepository;
     }
 
     public async Task<IEnumerable<Attendee>> ListAsync()
@@ -24,8 +28,22 @@ public class AttendeeService: IAttendeeService
         return await _attendeeRepository.ListAsync();
     }
 
+    public async Task<IEnumerable<Event>> ListEventsByAttendeeAsync(int attendeeId)
+    {
+        return await _eventRepository.ListByAttendeeAsync(attendeeId);
+    }
+    
+
     public async Task<AttendeeResponse> SaveAsync(Attendee attendee)
     {
+        var existingAttendeeWithUserName = await _attendeeRepository.FindByUserName(attendee.UserName);
+        var existingAttendeeWithEmail = await _attendeeRepository.FindByEmail(attendee.Email);
+        
+        
+        if (existingAttendeeWithUserName != null && existingAttendeeWithEmail!=null)
+            return new AttendeeResponse("An attendee with the same user name and email already exist");
+        
+        
         try
         {
             await _attendeeRepository.AddAsync(attendee);
@@ -86,5 +104,52 @@ public class AttendeeService: IAttendeeService
         {
             return new AttendeeResponse($"An error ocurred while deleting the attendee : {e.Message}");
         }
+    }
+
+    public async Task<AttendeeResponse> AddEventToAttendee(int attendeeId, int eventId)
+    {
+        var attendee = await _attendeeRepository.FindByIdAsync(attendeeId);
+        var eventt = await _eventRepository.FindByIdAsync(eventId);
+
+        if (attendee == null || eventt == null)
+        {
+            return new AttendeeResponse("one of the ids doesn't exist");
+        }
+
+        
+        
+        try
+        {
+            attendee.EventsListByAttendee.Add(eventt);
+            await _unitOfWork.CompleteAsync();
+            return new AttendeeResponse(attendee);
+        }
+        catch (Exception e)
+        {
+            return new AttendeeResponse($"An error occurred while adding event to attendee : {e.Message}");
+        }
+    }
+
+    public async Task<AttendeeResponse> AddPaymentToAttendee(int attendeeId, int paymentId)
+    {
+        var attendee = await _attendeeRepository.FindByIdAsync(attendeeId);
+        var payment = await _paymentRepository.FindByIdAsync(paymentId);
+
+        if (attendee == null || payment == null)
+            return new AttendeeResponse("The attendee or  payment doesn't exist");
+
+        try
+        {
+            attendee.PaymentsListByAttendee.Add(payment);
+            await _unitOfWork.CompleteAsync();
+            return new AttendeeResponse(attendee);
+        }
+        catch (Exception e)
+        {
+            return new AttendeeResponse($"An error occurred while adding payment to attendee : {e.Message}");
+
+        }
+
+
     }
 }

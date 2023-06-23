@@ -12,7 +12,7 @@ namespace BigFun.API.Booking.Controllers;
 [ApiController]
 [Route("/api/v1[controller]")]
 [Produces("application/json")]
-[SwaggerTag("Create, read, update and delete Attendees")]
+[SwaggerTag("Create, read, update and delete Attendee")]
 public class EventsController: ControllerBase
 {
     private readonly IEventService _eventService;
@@ -34,7 +34,7 @@ public class EventsController: ControllerBase
     }
     
     
-    [HttpPost]
+    /*[HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SaveEventResource resource)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
@@ -48,7 +48,7 @@ public class EventsController: ControllerBase
         var eventResource = _mapper.Map<Event, EventResource>(result.Resource);
 
         return Ok(eventResource);
-    }
+    }*/
     
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveEventResource resource)

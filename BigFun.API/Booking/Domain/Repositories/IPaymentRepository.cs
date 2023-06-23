@@ -12,5 +12,6 @@ public interface IPaymentRepository
     Task<Payment> FindByDateAsync(JSType.Date date);
     void Update(Payment payment);
     void Remove(Payment payment);
-    Task<IEnumerable<Payment>> ListByEventIdAsync(int eventId);
+    Task<IEnumerable<Payment>> ListByEventIdAsync(int eventId); 
+    Task<IEnumerable<Payment>> ListByAttendeeIdAsync(int attendeeId); 
 }

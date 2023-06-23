@@ -7,7 +7,7 @@ using BigFun.API.Shared.Persistence.Repositories;
 
 namespace BigFun.API.Booking.Persistence.Repositories;
 
-/*public class PaymentRepository : BaseRepository, IPaymentRepository
+public class PaymentRepository : BaseRepository, IPaymentRepository
 {
     public PaymentRepository(AppDbContext context) : base(context)
     {
@@ -53,4 +53,10 @@ namespace BigFun.API.Booking.Persistence.Repositories;
             .ToList();
         return paymentsByEvent;
     }
-}*/
+
+    public async Task<IEnumerable<Payment>> ListByAttendeeIdAsync(int attendeeId)
+    {
+        var paymentsByAttendee = _context.Payments.Where(l => l.AttendeeId == attendeeId).ToList();
+        return paymentsByAttendee;
+    }
+}
