@@ -27,6 +27,16 @@ public class AttendeeRepository : BaseRepository,IAttendeeRepository
         return await _context.Attendees.FindAsync(id);
     }
 
+    public async Task<Attendee> FindByUserName(string userName)
+    {
+        return await _context.Attendees.FirstOrDefaultAsync(p => p.UserName == userName);
+    }
+
+    public async Task<Attendee> FindByEmail(string email)
+    {
+        return await _context.Attendees.FirstOrDefaultAsync(p => p.Email == email);
+    }
+
     public void Update(Attendee attendee)
     {
         _context.Attendees.Update(attendee);

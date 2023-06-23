@@ -17,10 +17,30 @@ public class EventRepository :BaseRepository, IEventRepository
         return await _context.Events.ToListAsync();
     }
 
+    public async Task<IEnumerable<Event>> ListByAttendeeAsync(int attendeeId)
+    {
+        var eventsByAttendee = _context.Attendees.Where(u => u.Id == attendeeId)
+            .SelectMany(u => u.EventsListByAttendee).ToList();
+
+        return eventsByAttendee;
+    }
+
+    public async Task<IEnumerable<Event>> ListByOrganizerAsync(int organizerId)
+    {
+        var eventsByOrganizer = _context.Events.Where(u => u.OrganizerId == organizerId)
+            .ToList();
+
+        return eventsByOrganizer;
+    }
+    
+    
+
     public async Task AddSync(Event events)
     {
         await _context.Events.AddAsync(events);
     }
+    
+    
     
     
 
@@ -29,7 +49,7 @@ public class EventRepository :BaseRepository, IEventRepository
         return await _context.Events.FindAsync(id);
     }
 
-    /*public async Task<IEnumerable<Event>> FindByOrganizerIdAsync(int organizerId)
+    /*public async Task<IEnumerable<Event>> ListByEventIdAsync(int organizerId)
     {
         return await _context.Events
             .Where(p => p.OrganizerId == organizerId)
@@ -37,7 +57,7 @@ public class EventRepository :BaseRepository, IEventRepository
             .ToListAsync();
     }
 //AGREGADO DE ISABELA
-    public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
+    public async Task<IEnumerable<Event>> ListByEventIdAsync(int organizerId)
     {
         return await _context.Events.Where(p => p.OrganizerId == organizerId)
             .Include(p => p.Organizer).ToListAsync();

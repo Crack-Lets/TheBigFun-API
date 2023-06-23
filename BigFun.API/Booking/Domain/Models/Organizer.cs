@@ -9,7 +9,7 @@ public class Organizer
 
     // Relationships
 
-    //public IList<Event> Events { get; set; } = new List<Event>();
+    public IList<Event> EventsListByOrganizer { get; set; } = new List<Event>();
     //public IList<Payment> Payments { get; set; } = new List<Payment>();
 
     //esto en las clases de event y payment

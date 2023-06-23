@@ -10,12 +10,14 @@ public class EventService : IEventService
 {
 
     private readonly IEventRepository _eventRepository;
+    private readonly IPaymentRepository _paymentRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public EventService(IEventRepository eventRepository, IUnitOfWork unitOfWork)
+    public EventService(IEventRepository eventRepository, IUnitOfWork unitOfWork, IPaymentRepository paymentRepository)
     {
         _eventRepository = eventRepository;
         _unitOfWork = unitOfWork;
+        _paymentRepository = paymentRepository;
     }
     public async Task<IEnumerable<Event>> ListAsync()
     {
@@ -57,9 +59,9 @@ public class EventService : IEventService
         }
     }
     //AGREGADO DE ISA
-    /*public async Task<IEnumerable<Event>> ListByOrganizerIdAsync(int organizerId)
+    /*public async Task<IEnumerable<Event>> ListByEventIdAsync(int organizerId)
     {
-        return await _eventRepository.FindByOrganizerIdAsync(organizerId);
+        return await _eventRepository.ListByEventIdAsync(organizerId);
     }*/
 //
     public async Task<EventResponse> DeleteAsync(int eventId)
@@ -77,6 +79,26 @@ public class EventService : IEventService
         catch (Exception e)
         {
             return new EventResponse($"An error occurred while deleting the event: {e.Message}");
+        }
+    }
+
+    public async Task<EventResponse> AddPaymentToEvent(int eventId, int paymentId)
+    {
+        var events = await _eventRepository.FindByIdAsync(eventId);
+        var payment = await _paymentRepository.FindByIdAsync(paymentId);
+
+        if (events == null || payment == null)
+            return new EventResponse("The event or the payment doesn't exist");
+
+        try
+        {
+            events.PaymentsListByEvent.Add(payment);
+            await _unitOfWork.CompleteAsync();
+            return new EventResponse(events);
+        }
+        catch (Exception e)
+        {
+            return new EventResponse($"An error occurred while adding the payment to event: {e.Message}");
         }
     }
 }
