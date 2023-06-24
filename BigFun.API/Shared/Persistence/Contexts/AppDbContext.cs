@@ -1,4 +1,5 @@
 using BigFun.API.Booking.Domain.Models;
+using BigFun.API.Booking.Security.Domain.Models;
 using BigFun.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ public class AppDbContext : DbContext
     public DbSet<Attendee> Attendees { get; set; }
     public DbSet<Organizer> Organizers { get; set; }
     public DbSet<Event> Events { get; set;}
+    
+    public DbSet<User> Users { get; set; }
     
     public DbSet<Payment> Payments { get; set;}
 
@@ -50,7 +53,12 @@ public class AppDbContext : DbContext
         builder.Entity<Organizer>().HasMany(p => p.EventsListByOrganizer)
             .WithOne(e => e.Organizer).HasForeignKey(z => z.OrganizerId);
 
-        
+        builder.Entity<User>().ToTable("Users");
+        builder.Entity<User>().HasKey(p => p.Id);
+        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(30);
+        builder.Entity<User>().Property(p => p.FirstName).IsRequired();
+        builder.Entity<User>().Property(p => p.LastName).IsRequired();
 
         builder.Entity<Event>().ToTable("Events");
         builder.Entity<Event>().HasKey(p => p.Id);

@@ -10,8 +10,6 @@ public interface IEventService
     Task<EventResponse> UpdateAsync(int id, Event events);
 //AGREGADO DE ISA
     //Task<IEnumerable<Event>> ListByEventIdAsync(int organizerId);
-    
-    //
     Task<EventResponse> DeleteAsync(int eventId);
 
     Task<EventResponse> AddPaymentToEvent(int eventId, int paymentId);
