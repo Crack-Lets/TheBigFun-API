@@ -43,7 +43,7 @@ public class PaymentService : IPaymentService
         var existingPayment = await _paymentRepository.FindByIdAsync(id);
         if (existingPayment == null)
             return new PaymentResponse("Payment not found");
-        existingPayment.Date = payment.Date;
+        //existingPayment.Date = payment.Date;
         try
         {
             _paymentRepository.Update(existingPayment);

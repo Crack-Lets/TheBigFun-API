@@ -14,6 +14,6 @@ public class EventResource
     public string District { get; set; }
    //AGREGADO DE ISA
     public int OrganizerId { get; set; }
-    public OrganizerResource Organizer { get; set; }
+    public Organizer Organizer { get; set; }
     
 }
